@@ -49,7 +49,7 @@ type KubernetesServiceApiV1 struct {
 }
 
 // DefaultServiceURL is the default URL to make service requests to.
-const DefaultServiceURL = "https://containers.cloud.ibm.com/global"
+const DefaultServiceURL = "https://containers.test.cloud.ibm.com/global"
 
 // DefaultServiceName is the default key used to find external configuration information.
 const DefaultServiceName = "kubernetes_service_api"
@@ -2003,18 +2003,21 @@ func (kubernetesServiceApi *KubernetesServiceApiV1) GetLBConfigWithContext(ctx c
 // to all load balancers that expose ALBs in the cluster.
 //
 // Available features:
-//   + `proxyProtocol`:
-//     + Limitations:
-//       + This feature is supported only for VPC Gen 2 clusters that run Kubernetes version 1.18 or later.
-//       + This feature is cluster-level, therefore `type` field of the request must be empty.
-//     + Configuration:
-//       + `enable`: Set to `true` to enable or `false` to disable the PROXY protocol for the ALB load balancers. The
+//   - `proxyProtocol`:
+//   - Limitations:
+//   - This feature is supported only for VPC Gen 2 clusters that run Kubernetes version 1.18 or later.
+//   - This feature is cluster-level, therefore `type` field of the request must be empty.
+//   - Configuration:
+//   - `enable`: Set to `true` to enable or `false` to disable the PROXY protocol for the ALB load balancers. The
+//
 // PROXY protocol enables load balancers to pass client connection information that is contained in headers on the
 // client request, including the client IP address, the proxy server IP address, and both port numbers, to ALBs.
-//       + `headerTimeout`: The timeout value, in seconds, for the load balancer to receive the PROXY protocol headers
+//   - `headerTimeout`: The timeout value, in seconds, for the load balancer to receive the PROXY protocol headers
+//
 // that contain the client connection information. This option has effect only on ALBs running the Kubernetes Ingress
 // image. Default: `5`
-//       + `cidr`: Load balancer CIDRs from which ALBs process information in PROXY protocol headers. If requests that
+//   - `cidr`: Load balancer CIDRs from which ALBs process information in PROXY protocol headers. If requests that
+//
 // contain PROXY headers originate from load balancers in other IP ranges, the information in the headers is not process
 // by the ALB. This option has effect only on ALBs running the Kubernetes Ingress image. Default: `0.0.0.0/0`.
 func (kubernetesServiceApi *KubernetesServiceApiV1) PatchLBConfig(patchLBConfigOptions *PatchLBConfigOptions) (response *core.DetailedResponse, err error) {
